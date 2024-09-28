@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Nagar Nigam Map</title>
+    
+    <script src="mains.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link href="https://fonts.googleapis.com/css?family=Quicksand.css" rel="stylesheet" />
+    <script>
+      function toggleDropdown() {
+        const dropdownMenu = document.querySelector(".dropdown-menu");
+        dropdownMenu.style.display =
+          dropdownMenu.style.display === "block" ? "none" : "block";
+      }
+      
+    $(document).ready(function() {
+        $('.dropdown-toggle').dropdown();
+    });
+</script>
+
+      
+    </script>
+    <style>
+
+      nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgb(2,0,36);
+    background: linear-gradient( 90deg, rgba(0,212,255,1) 10%, rgba(239,0,255,1) 35%, rgba(2,0,36,1) 120%);
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;
+  }
+  
+  .logo-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo {
+    height: 150px;
+    width: 150px;
+    margin-right: 10px;
+  }
+  
+  .logo-text {
+    color: #fff;
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration-line: none;
+  }
+  .logo-text-hindi {
+    display: block;
+    color: blue;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .nav-links {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 15px;
+  }
+  
+  .nav-links li {
+    display: inline;
+  }
+  
+  .nav-links a {
+    color: blue;
+    text-decoration: none;
+    padding: 8px 16px;
+    font-size: 16px;
+  }
+  
+  .nav-links a:hover {
+    background-color: #f0f0f0;
+    border-radius: 4px;
+  }
+  
+  .search-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  .search-container input[type="text"] {
+    padding: 10px 30px 10px 40px;
+    border: 1px solid #1f2667;;
+    box-shadow: 0 4px 8px #1f2667 ; 
+    border-radius: 40px;
+    height: 40px;
+    width: 220px;
+  }
+  
+  .dropdown-icon {
+    position: absolute;
+    left: 10px;
+    color: #575757;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .search-container .search-icon {
+    position: absolute;
+    font-size: 20px;
+    color: #575757;
+    right: 10px;
+    cursor: pointer;
+  }
+  
+  .search-container button {
+    padding: 20px 10px;
+    border: none;
+    background-color: #575757;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 5px;
+  }
+  
+  
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+    z-index: 1;
+    width: 150px;
+  }
+  
+  .dropdown-menu a {
+    display: block;
+    padding: 10px 20px;
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .dropdown-menu a:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .search-container:hover .dropdown-menu {
+    display: block;
+  }
+  
+  /* Media Queries for Responsiveness */
+  @media (max-width: 768px) {
+    nav {
+      flex-direction: column;
+    }
+  
+    .nav-links {
+      flex-direction: column;
+      gap: 0;
+    }
+  
+    .nav-links a {
+      padding: 10px 20px;
+    }
+  
+    .search-container {
+      margin-top: 10px;
+      width: 100%;
+    }
+  
+    .search-container input[type="text"] {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .logo-text {
+      font-size: 16px;
+    }
+  
+    .nav-links a {
+      padding: 8px 16px;
+      font-size: 14px;
+    }
+  
+    .search-container input[type="text"] {
+      padding: 6px 10px 6px 30px;
+    }
+  
+    .dropdown-icon,
+    .search-icon {
+      font-size: 14px;
+    }
+  }
+  .h2-imc{
+    margin: 20px;
+  }
+  .dropdown-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .dropdown-table th,
+        .dropdown-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .dropdown-table th {
+            background-color: #f2f2f2;
+        }
+        .btn-primary a {
+            color: white;
+            text-decoration: none;
+        }
+        .btn-primary:hover {
+            background-color: white;
+            color: black;
+        }
+        .btn-primary:hover a {
+            color: black;
+        }
+        .container{
+          background: linear-gradient( 90deg, rgba(0,212,255,1) 10%, rgba(239,0,255,1) 35%, rgba(2,0,36,1) 120%);
+          
+        }
+        .footer bg-primary text-white py-4{
+          background: linear-gradient( 90deg, rgba(0,212,255,1) 10%, rgba(239,0,255,1) 35%, rgba(2,0,36,1) 120%);
+        }
+        .dropdown:hover .dropdown-menu {
+        display: block;
+        margin-top: 0; 
+        margin-left:50px;/* Remove the gap so it appears seamless */
+    }
+    </style>
+  </head>
+
+  <body>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      
+    />
+
+    <body>
+      <!-- Navigation bar -->
+      <!---->
+      <nav>
+        <div class="logo-container">
+          <img src="logo5.png" alt="Logo" class="logo" />
+        </div>
+        <div class="logo-text-container">
+          <a href="logo\IMC Logo.png" class="logo-text">
+            <p class="logo-text">
+              INDORE MUNCIPAL CORPORATION(IMC)<br class="logo-text" />इंदौर नगर पालिका
+              निगम
+              <a href="todo2.html" class="alink" id="switch-lang" title="Change Language हिन्दी" aria-label="Change Language हिन्दी" rel="हिन्दी">
+                <i class="fa fa-language" aria-hidden="true"></i> हिन्दी
+            </a>
+            </p>
+          </a>
+        </div>
+
+        <div class="search-container ">
+          <i class="fas fa-bars dropdown-icon" onclick="toggleDropdown()"></i>
+          <input type="text" class="form-control me-2" id="searchInput" placeholder="Search..." />
+          <i class="fas fa-search search-icon" style="padding-right:5px"></i>
+          <div class="dropdown-menu" style="max-height: 300px; overflow-y: auto;">
+              <a href="https://maps.app.goo.gl/p2FqgQuFp95Dnjxc8">Property Tax Correction Unit</a><br>
+              <a href="https://maps.app.goo.gl/p2FqgQuFp95Dnjxc8">E Municipal License Boring</a><br>
+              <a href="https://maps.app.goo.gl/p2FqgQuFp95Dnjxc8">Narmada water supply</a><br>
+              <a href="https://maps.app.goo.gl/p2FqgQuFp95Dnjxc8">spot fine</a><br>
+              
+              <a href="https://maps.app.goo.gl/p2FqgQuFp95Dnjxc8">water tax market</a><br>
+              <a href="https://maps.app.goo.gl/p2FqgQuFp95Dnjxc8">transportation</a><br>
+              <a href="https://maps.app.goo.gl/p2FqgQuFp95Dnjxc8">Lab (water testing)</a><br>
+              <a href="https://maps.app.goo.gl/p2FqgQuFp95Dnjxc8">Ram Roti Scheme</a><br>
+              <a href="https://maps.app.goo.gl/p2FqgQuFp95Dnjxc8">Urban Transport and Vehicle Parking Department</a><br>
+         <!--    <a href="https://maps.app.goo.gl/p2FqgQuFp95Dnjxc8">silk center</a><br>
+              <a href="https://maps.app.goo.gl/p2FqgQuFp95Dnjxc8">cow shed</a><br>
+              <a href="https://maps.app.goo.gl/p2FqgQuFp95Dnjxc8">रेन बसेरा / आश्रय स्थल</a><br>    
+              <a href="https://maps.app.goo.gl/p2FqgQuFp95Dnjxc8">रसोई योजना दीनदयाल</a><br>
+              <a href="https://maps.app.goo.gl/p2FqgQuFp95Dnjxc8">प्रभावी राजस्व विभाग</a><br><br>
+              
+              <a href="https://maps.app.goo.gl/DwhhK9hf6LAsyMJe8">विद्युत विभाग</a><br>
+              <a href="https://maps.app.goo.gl/DwhhK9hf6LAsyMJe8">संग्रहण कक्ष</a><br>
+              <a href="https://maps.app.goo.gl/DwhhK9hf6LAsyMJe8">सेंट्रल स्टोर</a><br>
+              <a href="https://maps.app.goo.gl/DwhhK9hf6LAsyMJe8">निविदा समिति कार्यालय स्टोर</a><br>
+              <a href="https://maps.app.goo.gl/DwhhK9hf6LAsyMJe8">निर्वाचन कार्यालय</a><br>
+              <a href="https://maps.app.goo.gl/DwhhK9hf6LAsyMJe8">विधि विभाग</a><br><br>    -->
+              
+              <a href="https://maps.app.goo.gl/iGVsehEtuky8NveD8">Sanitation and Solid Waste Management Department</a><br>
+              <a href="https://maps.app.goo.gl/iGVsehEtuky8NveD8">Sanitation and Solid Waste Management Department</a><br>
+              <a href="https://maps.app.goo.gl/iGVsehEtuky8NveD8">Establishment branch</a><br>
+              <a href="https://maps.app.goo.gl/iGVsehEtuky8NveD8">Additional Commissioner Shri Siddharth Jain</a><br>
+              <a href="https://maps.app.goo.gl/iGVsehEtuky8NveD8">Additional Commissioner Shri Manoj Kumar Chaurasia</a><br>
+              <a href="https://maps.app.goo.gl/iGVsehEtuky8NveD8">Additional Commissioner Shri Shyamendra Jaiswa</a><br>
+              <a href="https://maps.app.goo.gl/iGVsehEtuky8NveD8">New Garden Department</a><br>
+              <a href="https://maps.app.goo.gl/iGVsehEtuky8NveD8">colony cell</a><br>
+              <a href="https://maps.app.goo.gl/iGVsehEtuky8NveD8">fire department</a><br>
+              <a href="https://maps.app.goo.gl/iGVsehEtuky8NveD8">Deputy Commissioner Lata Agarwal</a><br>
+              <a href="https://maps.app.goo.gl/iGVsehEtuky8NveD8">garden department maintenance branch</a><br>
+              <a href="https://maps.app.goo.gl/iGVsehEtuky8NveD8">garden department civil branch</a><br>
+              <a href="https://maps.app.goo.gl/iGVsehEtuky8NveD8">council office</a><br>
+              <a href="https://maps.app.goo.gl/iGVsehEtuky8NveD8">CM Helpline</a><br><br>
+              
+              <a href="https://maps.app.goo.gl/eXJY8aJE7bc61KmeA">IT department</a><br>
+              <a href="https://maps.app.goo.gl/eXJY8aJE7bc61KmeA">Pension Department (Super Staff)</a><br>
+              <a href="https://maps.app.goo.gl/eXJY8aJE7bc61KmeA">Planning and Information Technology Public Affairs Department</a><br>
+              <a href="https://maps.app.goo.gl/eXJY8aJE7bc61KmeA">accounting department</a><br>
+              <a href="https://maps.app.goo.gl/Anc1qucNaiYURVJh7">Commissioner Shri Shivam Verma</a><br>
+              <a href="https://maps.app.goo.gl/eXJY8aJE7bc61KmeA">Public Information Office</a><br>
+              <a href="https://maps.app.goo.gl/eXJY8aJE7bc61KmeA">Consultancy Accounts Department</a><br>
+              <a href="https://maps.app.goo.gl/eXJY8aJE7bc61KmeA">Mayor Inbound and outbound department.</a><br><br>
+              
+              <a href="https://maps.app.goo.gl/xdaMyNWZGh414krw7">Municipal Corporation Control Room</a><br><br>
+              
+              <a href="https://maps.app.goo.gl/SzM7uqRjNvNyb6Qr9">record room</a><br>
+              <a href="https://maps.app.goo.gl/SzM7uqRjNvNyb6Qr9">health Department</a><br>
+              <a href="https://maps.app.goo.gl/SzM7uqRjNvNyb6Qr9">malaria department</a><br><br>
+              
+              <a href="https://maps.app.goo.gl/eWsvfZkd9JiW5qax6">Jai Hind Bhawan</a><br>
+              <a href="https://maps.app.goo.gl/eWsvfZkd9JiW5qax6">pension (health department)</a><br><br>
+              
+              <a href="https://maps.app.goo.gl/VecBY3FfM5oE5Sn76">NRY office</a><br><br>
+              
+              <a href="https://maps.app.goo.gl/skMWMJ1GiejMNs2w6">Kondwara department</a><br><br>
+              
+              <a href="https://maps.app.goo.gl/XdHapDWBXPbWkPT56">Drainage Department</a><br>
+              <a href="https://maps.app.goo.gl/XdHapDWBXPbWkPT56">CTPT Department</a><br><br>
+              
+              <a href="https://maps.app.goo.gl/TgsNKa31REx4duNt5">Revenue Department (Birth Death Marriage Certificate)</a><br><br>
+              
+              <a href="https://maps.app.goo.gl/Z3updv8mDbDaj8Jf9">NULM Office</a><br><br>
+          </div>
+      </div>
+         
+     
+      </nav>
+    
+      <!-- End of Navigation bar-->
+
+    <h2 class="h2-imc" style="text-align: center">IMC Departments</h2>
+    <table class="dropdown-table">
+      <thead>
+          <tr>
+              <th>Sr. No</th>
+              <th>Department Name </th>
+              <th>Floor No.</th>
+              <th>Click Here </th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <td>1</td>
+              <td>Property Tax Correction Unit</td>
+              <td>
+               First Floor
+                </div>
+                                
+                                    </td>
+
+              <td><button class="btn btn-primary"><a href="https://maps.app.goo.gl/p2FqgQuFp95Dnjxc8">Locate</a></button></td>
+          </tr>
+          <tr>
+              <td>2</td>
+              <td>E Municipal License Boring</td>
+              <td>
+               First Floor
+                </div>
+                                
+                                    </td>
+              <td><button class="btn btn-primary"><a href="https://maps.app.goo.gl/p2FqgQuFp95Dnjxc8">Locate</a></button></td>
+          </tr>
+          <tr>
+              <td>3</td>
+              <td>Narmada water supply</td>
+              <td>
+               
+                   
+        First Floor
+                  
+            
+                                
+                                    </td>
+              <td><button class="btn btn-primary"><a href="https://maps.app.goo.gl/p2FqgQuFp95Dnjxc8">Locate</a></button></td>
+          </tr>
+          <tr>
+              <td>4</td>
+              <td>spot fine</td>
+              <td>
+               First Floor
+                </div>
+                                
+                                    </td>
+              <td><button class="btn btn-primary"><a href="https://maps.app.goo.gl/p2FqgQuFp95Dnjxc8">Locate</a></button></td>
+          </tr>
+          
+          <tr>
+            <td>5</td>
+            <td>fire department</td>
+            <td>
+             First Floor
+              </div>
+                              
+                                  </td>
+            <td><button class="btn btn-primary"><a href="https://maps.app.goo.gl/iGVsehEtuky8NveD8">Locate</a></button></td>
+        </tr>
+
+
+
+
+
+          <tr>
+              <td>6</td>
+              <td>water tax market</td>
+              <td>
+               First Floor
+                </div>
+                                
+                                    </td>
+              <td><button class="btn btn-primary"><a href="https://maps.app.goo.gl/p2FqgQuFp95Dnjxc8">Locate</a></button></td>
+          </tr>
+          <tr>
+              <td>7</td>
+              <td>transportation</td>
+              <td>
+               First Floor
+                </div>
+                                
+                                    </td>
+              <td><button class="btn btn-primary"><a href="https://maps.app.goo.gl/p2FqgQuFp95Dnjxc8">Locate</a></button></td>
+          </tr>
+          <tr>
+              <td>8</td>
+              <td>Lab (water testing)</td>
+              <td>
+               First Floor
+                </div>
+                                
+                                    </td>
+              <td><button class="btn btn-primary"><a href="https://maps.app.goo.gl/p2FqgQuFp95Dnjxc8">Locate</a></button></td>
+          </tr>
+          <tr>
+              <td>9</td>
+              <td>Ram Roti Scheme</td>
+              <td>
+               First Floor
+                </div>
+                                
+                                    </td>
+              <td><button class="btn btn-primary"><a href="https://maps.app.goo.gl/p2FqgQuFp95Dnjxc8">Locate</a></button></td>
+          </tr>
+          <tr>
+              <td>10</td>
+              <td>Urban Transport and Vehicle Parking Department</td>
+              <td>
+               First Floor
+                </div>
+                                
+                                    </td>
+              <td><button class="btn btn-primary"><a href="https://maps.app.goo.gl/p2FqgQuFp95Dnjxc8">Locate</a></button></td>
+          </tr>
+          <tr>
+              <td>11</td>
+              <td>Sanitation and Solid Waste Management Department</td>
+              <td>
+               First Floor
+                </div>
+                                
+                                    </td>
+              <td><button class="btn btn-primary"><a href="https://maps.app.goo.gl/iGVsehEtuky8NveD8">Locate</a></button></td>
+          </tr>
+          <tr>
+              <td>12</td>
+              <td>Sanitation and Solid Waste Management Department</td>
+              <td>
+               First Floor
+                </div>
+                                
+                                    </td>
+              <td><button class="btn btn-primary"><a href="https://maps.app.goo.gl/iGVsehEtuky8NveD8">Locate</a></button></td>
+          </tr>
+          <tr>
+              <td>13</td>
+              <td>Establishment branch</td>
+              <td>
+               First Floor
+                </div>
+                                
+                                    </td>
+              <td><button class="btn btn-primary"><a href="https://maps.app.goo.gl/iGVsehEtuky8NveD8">Locate</a></button></td>
+          </tr>
+          <tr>
+              <td>14</td>
+              <td>Additional Commissioner Shri Siddharth Jain</td>
+              <td>
+               First Floor
+                </div>
+                                
+                                    </td>
+              <td><button class="btn btn-primary"><a href="https://maps.app.goo.gl/iGVsehEtuky8NveD8">Locate</a></button></td>
+          </tr>
+          <tr>
+              <td>15</td>
+              <td>Additional Commissioner Shri Manoj Kumar Chaurasia</td>
+              <td>
+               First Floor
+                </div>
+                                
+                                    </td>
+              <td><button class="btn btn-primary"><a href="https://maps.app.goo.gl/iGVsehEtuky8NveD8">Locate</a></button></td>
+          </tr>
+          <tr>
+              <td>16</td>
+              <td> Additional Commissioner Shri Shyamendra Jaiswa</td>
+              <td>
+               First Floor
+                </div>
+                                
+                                    </td>
+              <td><button class="btn btn-primary"><a href="https://maps.app.goo.gl/iGVsehEtuky8NveD8">Locate</a></button></td>
+          </tr>
+          <tr>
+              <td>17</td>
+              <td>New Garden Department</td>
+              <td>
+               Second Floor
+                </div>
+                                
+                                    </td>
+              <td><button class="btn btn-primary"><a href="https://maps.app.goo.gl/iGVsehEtuky8NveD8">Locate</a></button></td>
+          </tr>
+          <tr>
+              <td>18</td>
+              <td>colony cell</td>
+              <td>
+               First Floor
+                </div>
+                                
+                                    </td>
+              <td><button class="btn btn-primary"><a href="https://maps.app.goo.gl/iGVsehEtuky8NveD8">Locate</a></button></td>
+          </tr>
+          <tr>
+              <td>19</td>
+              <td>Deputy Commissioner Lata Agarwal</td>
+              <td>
+               First Floor
+                </div>
+                                
+                                    </td>
+              <td><button class="btn btn-primary"><a href="https://maps.app.goo.gl/iGVsehEtuky8NveD8">Locate</a></button></td>
+          </tr>
+          <tr>
+              <td>20</td>
+              <td>garden department maintenance branch</td>
+              <td>
+               First Floor
+                </div>
+                                
+                                    </td>
+              <td><button class="btn btn-primary"><a href="https://maps.app.goo.gl/iGVsehEtuky8NveD8">Locate</a></button></td>
+          </tr>
+          <tr>
+              <td>21</td>
+              <td>
+                garden department civil branch</td>
+              <td>
+               Second Floor
+                </div>
+                                
+                                    </td>
+              <td><button class="btn btn-primary"><a href="https://maps.app.goo.gl/iGVsehEtuky8NveD8">Locate</a></button></td>
+          </tr>
+          <tr>
+              <td>22</td>
+              <td>council office</td>
+              <td>
+               First Floor
+                </div>
+                                
+                                    </td>
+              <td><button class="btn btn-primary"><a href="https://maps.app.goo.gl/iGVsehEtuky8NveD8">Locate</a></button></td>
+          </tr>
+          <tr>
+              <td>23</td>
+              <td>CM Helpline</td>
+              <td>
+               Second Floor
+                </div>
+                                
+                                    </td>
+              <td><button class="btn btn-primary"><a href="https://maps.app.goo.gl/iGVsehEtuky8NveD8">Locate</a></button></td>
+          </tr>
+          <tr>
+              <td>24</td>
+              <td>IT department</td>
+              <td>
+               First Floor
+                </div>
+                                
+                                    </td>
+              <td><button class="btn btn-primary"><a href="https://maps.app.goo.gl/eXJY8aJE7bc61KmeA">Locate</a></button></td>
+          </tr>
+          <tr>
+              <td>25</td>
+              <td>Pension Department (Super Staff)</td>
+              <td>
+               Ground Floor
+                </div>
+                                
+                                    </td>
+              <td><button class="btn btn-primary"><a href="https://maps.app.goo.gl/eXJY8aJE7bc61KmeA">Locate</a></button></td>
+          </tr>
+          <tr>
+              <td>26</td>
+
+              <td>Planning and Information Technology Public Affairs Department</td>
+              
+              <td>
+               First Floor
+                </div>
+                                
+                                    </td>
+              
+
+              <td><button class="btn btn-primary"><a href="https://maps.app.goo.gl/eXJY8aJE7bc61KmeA">Locate</a></button></td>
+          </tr>
+          <tr>
+              <td>27</td>
+              <td>accounting department</td>
+              <td>
+               Ground Floor
+                </div>
+                                
+                                    </td>
+              <td><button class="btn btn-primary"><a href="https://maps.app.goo.gl/eXJY8aJE7bc61KmeA">Locate</a></button></td>
+          </tr>
+          <tr>
+              <td>28</td>
+              <td> Commissioner Shri Shivam Verma</td>
+              <td>
+                Ground Floor
+                </div>
+                                
+                                    </td>
+              <td><button class="btn btn-primary"><a href="https://maps.app.goo.gl/Anc1qucNaiYURVJh7">Locate</a></button></td>
+          </tr>
+          <tr>
+              <td>29</td>
+              <td>Public Information Office</td>
+              <td>
+               Ground Floor
+                </div>
+                                
+                                    </td>
+              <td><button class="btn btn-primary"><a href="https://maps.app.goo.gl/eXJY8aJE7bc61KmeA">Locate</a></button></td>
+          </tr>
+          <tr>
+              <td>30</td>
+              <td>Consultancy Accounts Department</td>
+              <td>
+               Ground Floor
+                </div>
+                                
+                                    </td>
+              <td><button class="btn btn-primary"><a href="https://maps.app.goo.gl/eXJY8aJE7bc61KmeA">Locate</a></button></td>
+          </tr>
+          <tr>
+              <td>31</td>
+              <td>Mayor Inbound and outbound department.</td>
+              <td>
+               First Floor
+                </div>
+                                
+                                    </td>
+              <td><button class="btn btn-primary"><a href="https://maps.app.goo.gl/eXJY8aJE7bc61KmeA">Locate</a></button></td>
+          </tr>
+          <tr>
+              <td>32</td>
+              <td>Municipal Corporation Control Room</td>
+              <td>
+               Ground Floor
+                </div>
+                                
+                                    </td>
+              <td><button class="btn btn-primary"><a href="https://maps.app.goo.gl/xdaMyNWZGh414krw7">Locate</a></button></td>
+          </tr>
+          <tr>
+              <td>33</td>
+              <td>record room</td>
+              <td>
+               Ground Floor
+                </div>
+                                
+                                    </td>
+              <td><button class="btn btn-primary"><a href="https://maps.app.goo.gl/SzM7uqRjNvNyb6Qr9">Locate</a></button></td>
+          </tr>
+          <tr>
+              <td>34</td>
+              <td>health Department</td>
+              <td>
+                Ground Floor
+                </div>
+                                
+                                    </td>
+              <td><button class="btn btn-primary"><a href="https://maps.app.goo.gl/SzM7uqRjNvNyb6Qr9">Locate</a></button></td>
+          </tr>
+          <tr>
+              <td>35</td>
+              <td>malaria department</td>
+              <td>
+                Ground Floor
+                </div>
+                                
+                                    </td>
+              <td><button class="btn btn-primary"><a href="https://maps.app.goo.gl/SzM7uqRjNvNyb6Qr9">Locate</a></button></td>
+          </tr>
+          <tr>
+              <td>36</td>
+              <td>Jai Hind Bhawan</td>
+              <td>
+               First Floor
+                </div>
+                                
+                                    </td>
+              <td><button class="btn btn-primary"><a href="https://maps.app.goo.gl/eWsvfZkd9JiW5qax6">Locate</a></button></td>
+          </tr>
+          <tr>
+              <td>37</td>
+              <td>pension (health department)(health Department)</td>
+              <td>
+                Ground Floor
+                </div>
+                                
+                                    </td>
+              <td><button class="btn btn-primary"><a href="https://maps.app.goo.gl/eWsvfZkd9JiW5qax6">Locate</a></button></td>
+          </tr>
+          <tr>
+              <td>38</td>
+              <td>NRY office</td>
+              <td>
+                Ground Floor
+                </div>
+                                
+                                    </td>
+              <td><button class="btn btn-primary"><a href="https://maps.app.goo.gl/VecBY3FfM5oE5Sn76">Locate</a></button></td>
+          </tr>
+          <tr>
+              <td>39</td>
+              <td>Kondwara department</td>
+              <td>
+                Ground Floor
+                </div>
+                                
+                                    </td>
+              <td><button class="btn btn-primary"><a href="https://maps.app.goo.gl/skMWMJ1GiejMNs2w6">Locate</a></button></td>
+          </tr>
+          <tr>
+              <td>40</td>
+              <td>Drainage Department</td>
+              <td>
+               First Floor
+                </div>
+                                
+                                    </td>
+              <td><button class="btn btn-primary"><a href="https://maps.app.goo.gl/XdHapDWBXPbWkPT56">Locate</a></button></td>
+          </tr>
+          <tr>
+              <td>41</td>
+              <td>CTPT Department</td>
+              <td>
+               First Floor
+                </div>
+                                
+                                    </td>
+              <td><button class="btn btn-primary"><a href="https://maps.app.goo.gl/XdHapDWBXPbWkPT56">Locate</a></button></td>
+          </tr>
+          <tr>
+              <td>42</td>
+              <td>Revenue Department (Birth Death Marriage Certificate)</td>
+              <td>
+                Ground Floor
+                </div>
+                                
+                                    </td>
+              <td><button class="btn btn-primary"><a href="https://maps.app.goo.gl/TgsNKa31REx4duNt5">Locate</a></button></td>
+          </tr>
+          <tr>
+              <td>43</td>
+              <td>NULM Office</td>
+              <td>
+                Ground Floor
+                </div>
+                                
+                                    </td>
+              <td><button class="btn btn-primary"><a href="https://maps.app.goo.gl/Z3updv8mDbDaj8Jf9">Locate</a></button></td>
+          </tr>
+          
+          
+          <!-- Add more rows as needed -->
+      </tbody>
+  </table>
+
+    <footer class="footer bg-primary text-white py-4">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 text-center">
+            <h5>Contact Us</h5>
+            <p>123 Street, Indore, India</p>
+            <p>Email: info@imcindore.com</p>
+            <p>Phone: +91 123 456 7890</p>
+          </div>
+          <div class="col-md-4 text-center">
+            <h5>Follow Us</h5>
+            <div>
+              <a
+                href="https://www.facebook.com/SwachhIndore"
+                class="btn btn-primary"
+                target="_blank"
+                ><i class="fab fa-facebook"></i> Facebook</a
+              >
+              <a
+                href="https://x.com/SwachhIndore"
+                class="btn btn-info"
+                target="_blank"
+                ><i class="fab fa-twitter"></i> Twitter</a
+              >
+              <a
+                href="https://www.instagram.com/swachhindore/"
+                class="btn btn-danger"
+                target="_blank"
+                ><i class="fab fa-instagram"></i> Instagram</a
+              >
+            </div>
+          </div>
+          <div class="col-md-4 text-center">
+            <h5>Quick Links</h5>
+            <ul class="list-unstyled">
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Contact Us</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms of Use</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col text-center">
+            <p>&copy; 2024 IWM-IMC Team Indore. All Rights Reserved.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+
+
+
+
+
+
+
